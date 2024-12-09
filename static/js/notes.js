@@ -29,12 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="note-time">Today ${getCurrentTime()}</div>
                 <div class="note-content">${content}</div>
             `;
-
+    
             const form = document.querySelector('.note-form');
             doctorNotesList.insertBefore(note, form);
             form.remove();
+    
+            // Trigger the notification event
+            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const event = new CustomEvent('noteAdded', {
+                detail: {
+                    time: `Today ${currentTime}`,
+                    message: `New note added: "${content}"`
+                }
+            });
+            document.dispatchEvent(event);
         }
     }
+    
 
     function getCurrentTime() {
         return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

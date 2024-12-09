@@ -473,3 +473,62 @@ body {
   background-color: #3182ce;  /* Darker blue on hover */
 }
 
+
+/* Add button for notification */
+.notification-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 50%; /* Makes the button circular */
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+}
+
+.notification-popup {
+  position: absolute;
+  top: 60px; /* Adjust based on header height */
+  right: 20px; /* Adjust for alignment */
+  width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  display: none;
+}
+
+.notification-popup .notification {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.notification-popup .notification:last-child {
+  border-bottom: none;
+}
+
+.notification-popup .notification-time {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.notification-popup .notification-message {
+  font-size: 1rem;
+  color: black;
+}
+
+.notification-indicator {
+  position: absolute;
+  top: 5px; /* Adjust for alignment */
+  right: 5px; /* Adjust for alignment */
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.notification-indicator.hidden {
+  display: none;
+}

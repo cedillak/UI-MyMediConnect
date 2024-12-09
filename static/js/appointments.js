@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const time = document.getElementById('appointment-time').value;
         const title = document.getElementById('appointment-title').value;
         const doctor = document.getElementById('appointment-doctor').value;
-
+    
         if (date && time && title && doctor) {
             const appointment = document.createElement('div');
             appointment.className = 'appointment';
@@ -37,12 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="appointment-title">${title}</div>
                 <div class="appointment-doctor">Dr. ${doctor}</div>
             `;
-
+    
             const form = document.querySelector('.appointment-form');
             appointmentsList.insertBefore(appointment, form);
             form.remove();
+    
+            // Trigger the notification event
+            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const event = new CustomEvent('appointmentAdded', {
+                detail: {
+                    time: `Today ${currentTime}`,
+                    message: `New appointment Added`
+                }
+            });
+            document.dispatchEvent(event);
         }
     }
+    
 
     function formatDate(dateStr) {
         const date = new Date(dateStr);
