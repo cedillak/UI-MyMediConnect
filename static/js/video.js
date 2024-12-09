@@ -49,9 +49,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 videoTracks[0].enabled = !isEnabled;
                 videoBtn.innerHTML = isEnabled ? '❌' : '📹';
             };
+
+            const hangUpBtn = document.createElement('button');
+            hangUpBtn.className = 'control-btn-hang';
+            hangUpBtn.innerHTML = '📞';
+            hangUpBtn.onclick = () => {
+                // Stop all tracks
+                if (localStream) {
+                    localStream.getTracks().forEach(track => track.stop());
+                }
+                
+                // Reset the interface
+                isConnected = false;
+                connectBtn.textContent = 'Connect';
+                connectionStatus.textContent = '';
+                
+                // Remove video element and controls
+                while (videoInterface.firstChild) {
+                    videoInterface.removeChild(videoInterface.firstChild);
+                }
+                
+                // Add back the initial elements
+                const cameraIcon = document.createElement('div');
+                cameraIcon.className = 'camera-icon';
+                cameraIcon.textContent = '📹';
+                
+                const newConnectBtn = document.createElement('button');
+                newConnectBtn.id = 'connect-btn';
+                newConnectBtn.className = 'connect-btn';
+                newConnectBtn.textContent = 'Connect';
+                
+                const newStatus = document.createElement('div');
+                newStatus.id = 'connection-status';
+                newStatus.className = 'connection-status';
+                
+                videoInterface.appendChild(cameraIcon);
+                videoInterface.appendChild(newConnectBtn);
+                videoInterface.appendChild(newStatus);
+                
+                // Update the button reference and its event listener
+                const oldBtn = connectBtn;
+                oldBtn.replaceWith(newConnectBtn);
+                newConnectBtn.addEventListener('click', arguments.callee);
+            };
             
             controls.appendChild(muteBtn);
             controls.appendChild(videoBtn);
+            controls.appendChild(hangUpBtn);
             videoInterface.appendChild(controls);
             
             // Set the video source
