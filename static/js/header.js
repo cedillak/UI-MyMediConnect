@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const notificationBtn = document.getElementById('notification-btn');
     const header = document.querySelector('.app-header');
     let notifications = [
-        { time: 'Today 2:15 PM', message: 'Family Added Note: "Mom noticed improved appetite during lunch."' }
+        { time: 'Yesterday 2:15 PM', message: 'Family Added Note: "Mom noticed improved appetite during lunch."' }
     ];
     let hasNewNotification = false;
 
