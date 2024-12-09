@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link rel="icon" href="https://storage.googleapis.com/lazy-icons/medical-icon.png" type="image/x-icon">
+    <title>MediConnect</title>
+  </head>
+  <body>
+    {% include 'partials/_header.html' %}
+    <div class="main-content">
+      <div class="video-chat-container">
+        <div class="video-area">
+          <div id="video-interface" class="video-interface">
+            <div class="camera-icon">📹</div>
+            <button id="connect-btn" class="connect-btn">Connect</button>
+            <div id="connection-status" class="connection-status"></div>
+          </div>
+        </div>
+        <div class="side-panel">
+          <div class="controls-panel">
+            <button class="control-button calendar-btn" data-panel="calendar">
+              <span class="icon">📅</span>
+              Calendar
+            </button>
+            <button class="control-button notes-btn" data-panel="notes">
+              <span class="icon">📝</span>
+              Notes
+            </button>
+            <button class="control-button messages-btn" data-panel="messages">
+              <span class="icon">💬</span>
+              Messages
+            </button>
+          </div>
+          <div id="calendar-panel" class="feature-panel calendar-panel hidden">
+            <h2>Appointments</h2>
+            <div class="calendar-grid">
+              <!-- Calendar will be populated by JavaScript -->
+            </div>
+            <div class="appointments-list">
+              <div class="appointment">
+                <div class="appointment-time">9:00 AM - Today</div>
+                <div class="appointment-title">Morning Check-up</div>
+                <div class="appointment-doctor">Dr. Smith</div>
+              </div>
+              <div class="appointment">
+                <div class="appointment-time">2:30 PM - Tomorrow</div>
+                <div class="appointment-title">Physical Therapy</div>
+                <div class="appointment-doctor">Dr. Johnson</div>
+              </div>
+            </div>
+          </div>
+          <div id="notes-panel" class="feature-panel notes-panel hidden">
+            <div class="notes-section doctor-notes">
+              <h3>Doctor's Notes</h3>
+              <div class="note-input-container">
+                <textarea id="doctor-note-input" class="note-input" placeholder="Add a new note..."></textarea>
+                <button id="add-doctor-note" class="add-note-btn">Add Note</button>
+              </div>
+              <div id="doctor-notes-list">
+                <div class="note">
+                  <div class="note-time">Today 10:30 AM</div>
+                  <div class="note-content">Patient showing good progress. Vitals stable.</div>
+                </div>
+              </div>
+            </div>
+            <div class="notes-section family-notes">
+              <h3>Family Notes</h3>
+              <div class="note">
+                <div class="note-time">Today 2:15 PM</div>
+                <div class="note-content">Mom noticed improved appetite during lunch.</div>
+              </div>
+            </div>
+          </div>
+          <div id="messages-panel" class="feature-panel messages-panel hidden">
+            <div class="messages-container">
+              <div class="message received">
+                <div class="message-sender">Mom</div>
+                <div class="message-content">Hi sweety! How are you feeling?</div>
+                <div class="message-time">10:15 AM</div>
+              </div>
+              <div class="message sent">
+                <div class="message-content">Hi, Mom! Feeling ok...</div>
+                <div class="message-time">10:16 AM</div>
+              </div>
+            </div>
+            <div class="message-input-container">
+              <input type="text" id="message-input" class="message-input" placeholder="Type your message...">
+              <button id="send-message" class="send-message-btn">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/static/js/home.js"></script>
+    <script src="/static/js/video.js"></script>
+    <script src="/static/js/messages.js"></script>
+    <script src="/static/js/notes.js"></script>
+  </body>
+</html>
