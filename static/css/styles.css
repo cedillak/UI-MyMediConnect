@@ -103,6 +103,7 @@ body {
   gap: 2rem;
   padding: 2rem;
   height: calc(100vh - 5rem);
+  width: 100%; /* Ensure container expands to full width */
 }
 
 .video-area {
@@ -110,7 +111,8 @@ body {
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 60%;
+  min-width: 60%; /* Ensures the video container takes up at least 60% */
+  max-width: 75%; /* Prevents it from expanding too much */
   position: relative;
   overflow: hidden;
 }
@@ -192,13 +194,20 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 300px;
+  flex-basis: 300px; /* This will give it a base width but allow it to shrink or grow */
+  max-width: 400px;  /* Set a maximum width */
+  flex-grow: 1;  /* Allow it to grow */
+  min-width: 200px;  /* Set a minimum width */
 }
 
 .controls-panel {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 300px;
+  resize: horizontal; /* Allows the panel to be resized horizontally */
+  overflow: auto; /* Allows the content to overflow as it resizes */
+  max-width: 500px; /* Restricts the panel's maximum size */
 }
 
 .control-button {
@@ -214,6 +223,7 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;  /* Allow buttons to expand and take space */
 }
 
 .control-button:hover {
@@ -325,6 +335,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;  /* Ensure it takes the full width available */
 }
 
 .message {
@@ -362,10 +373,11 @@ body {
   border-top: 1px solid #eee;
   position: sticky;
   bottom: 0;
+  width: 100%; /* Ensures input container adjusts with width */
 }
 
 .message-input {
-  flex: 1;
+  flex-grow: 1; /* Make the input expand to take available space */
   padding: 0.5rem;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
@@ -380,6 +392,7 @@ body {
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.2s;
+  width: auto;  /* Ensure the button takes only necessary space */
 }
 
 .send-message-btn:hover {
@@ -390,3 +403,58 @@ body {
   background: #cbd5e0;
   cursor: not-allowed;
 }
+
+/* Button Styles */
+.add-btn, .add-btn:focus, .add-btn:active {
+  background-color: #4299e1;  /* Blue */
+  color: white;
+  
+  border-radius: 0.375rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #3182ce;  /* Darker blue on hover */
+}
+
+.add-btn:disabled {
+  background-color: #b3d8f3;  /* Lighter blue for disabled state */
+  cursor: not-allowed;
+}
+
+/* Customize Save Buttons for Appointments and Notes */
+#save-appointment, #save-note {
+  background-color: #4299e1;  /* Blue */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#save-appointment:hover, #save-note:hover {
+  background-color: #3182ce;  /* Darker blue on hover */
+}
+
+/* Add button for +Add */
+#add-appointment-btn, #add-doctor-note-btn {
+  background-color: #4299e1;  /* Blue */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#add-appointment-btn:hover, #add-doctor-note-btn:hover {
+  background-color: #3182ce;  /* Darker blue on hover */
+}
+

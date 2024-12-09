@@ -6,7 +6,8 @@
     <base href="/">
     <link rel="stylesheet" href="/static/css/styles.css" />
     <link rel="icon" href="https://storage.googleapis.com/lazy-icons/medical-icon.png" type="image/x-icon">
-    <title>MediConnect</title>
+
+    <title>MyMediConnect</title>
   </head>
   <body>
     {% include 'partials/_header.html' %}
@@ -35,7 +36,10 @@
             </button>
           </div>
           <div id="calendar-panel" class="feature-panel calendar-panel hidden">
-            <h2>Appointments</h2>
+            <div class="panel-header">
+              <h2>Appointments</h2>
+              <button id="add-appointment-btn" class="add-btn">+Add</button>
+            </div>
             <div class="calendar-grid">
               <!-- Calendar will be populated by JavaScript -->
             </div>
@@ -54,10 +58,9 @@
           </div>
           <div id="notes-panel" class="feature-panel notes-panel hidden">
             <div class="notes-section doctor-notes">
-              <h3>Doctor's Notes</h3>
-              <div class="note-input-container">
-                <textarea id="doctor-note-input" class="note-input" placeholder="Add a new note..."></textarea>
-                <button id="add-doctor-note" class="add-note-btn">Add Note</button>
+              <div class="panel-header">
+                <h3>Doctor's Notes</h3>
+                <button id="add-doctor-note-btn" class="add-btn">+Add</button>
               </div>
               <div id="doctor-notes-list">
                 <div class="note">
@@ -98,5 +101,6 @@
     <script src="/static/js/video.js"></script>
     <script src="/static/js/messages.js"></script>
     <script src="/static/js/notes.js"></script>
+    <script src="/static/js/appointments.js"></script>
   </body>
 </html>

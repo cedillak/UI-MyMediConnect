@@ -1,54 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const doctorNoteInput = document.getElementById('doctor-note-input');
-    const addDoctorNoteBtn = document.getElementById('add-doctor-note');
+    const addDoctorNoteBtn = document.getElementById('add-doctor-note-btn');
     const doctorNotesList = document.getElementById('doctor-notes-list');
 
-    function getCurrentTime() {
-        const now = new Date();
-        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    function showNoteForm() {
+        const form = document.createElement('div');
+        form.className = 'note-form';
+        form.innerHTML = `
+            <textarea id="note-content" class="note-input" placeholder="Enter your note..." required></textarea>
+            <div class="form-buttons">
+                <button id="save-note" class="add-btn">Save</button>
+                <button id="cancel-note" class="cancel-btn">Cancel</button>
+            </div>
+        `;
+
+        doctorNotesList.insertBefore(form, doctorNotesList.firstChild);
+
+        document.getElementById('save-note').addEventListener('click', saveNote);
+        document.getElementById('cancel-note').addEventListener('click', () => form.remove());
     }
 
-    function createNote(content) {
-        const noteDiv = document.createElement('div');
-        noteDiv.className = 'note';
-
-        const timeDiv = document.createElement('div');
-        timeDiv.className = 'note-time';
-        timeDiv.textContent = `Today ${getCurrentTime()}`;
-
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'note-content';
-        contentDiv.textContent = content;
-
-        noteDiv.appendChild(timeDiv);
-        noteDiv.appendChild(contentDiv);
-
-        return noteDiv;
-    }
-
-    function addNote() {
-        const content = doctorNoteInput.value.trim();
+    function saveNote() {
+        const content = document.getElementById('note-content').value.trim();
+        
         if (content) {
-            const note = createNote(content);
-            doctorNotesList.insertBefore(note, doctorNotesList.firstChild);
-            doctorNoteInput.value = '';
-            addDoctorNoteBtn.disabled = true;
+            const note = document.createElement('div');
+            note.className = 'note';
+            note.innerHTML = `
+                <div class="note-time">Today ${getCurrentTime()}</div>
+                <div class="note-content">${content}</div>
+            `;
+
+            const form = document.querySelector('.note-form');
+            doctorNotesList.insertBefore(note, form);
+            form.remove();
         }
     }
 
-    doctorNoteInput.addEventListener('input', () => {
-        addDoctorNoteBtn.disabled = !doctorNoteInput.value.trim();
-    });
+    function getCurrentTime() {
+        return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
 
-    doctorNoteInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey && !addDoctorNoteBtn.disabled) {
-            e.preventDefault();
-            addNote();
-        }
-    });
-
-    addDoctorNoteBtn.addEventListener('click', addNote);
-
-    // Initialize add note button state
-    addDoctorNoteBtn.disabled = true;
+    addDoctorNoteBtn.addEventListener('click', showNoteForm);
 });
