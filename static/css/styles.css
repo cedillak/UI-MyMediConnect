@@ -532,3 +532,30 @@ body {
 .notification-indicator.hidden {
   display: none;
 }
+
+
+#ask-family-btn {
+  margin-top: 10px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #4b98eb; /* Primary blue color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+#ask-family-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slightly lift on hover */
+}
+
+#ask-family-btn:disabled {
+  background-color: #d6d6d6; /* Gray for disabled state */
+  color: #aaa; /* Lighter text for disabled state */
+  cursor: not-allowed; /* Disabled cursor */
+  box-shadow: none; /* Remove shadow */
+}
